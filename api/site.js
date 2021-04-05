@@ -18,6 +18,7 @@ site.prototype.build = async function (env) {
     cwd,
     stdio: 'pipe',
     env: {
+      ...process.env,
       BUILD_ENV: env,
     },
   })
