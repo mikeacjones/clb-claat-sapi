@@ -16,7 +16,6 @@ site.prototype.build = async function (env) {
   const cwd = env === 'prod' ? self.prodSiteDir : self.devSiteDir
   await utils.execAsync('node_modules/.bin/gatsby', ['build'], {
     cwd,
-    stdio: 'pipe',
     env: {
       ...process.env,
       BUILD_ENV: env,
