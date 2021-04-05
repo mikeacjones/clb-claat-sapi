@@ -15,7 +15,7 @@ site.prototype.build = async function (env) {
   const self = this
   const oPath = path.join('/tmp', utils.uuid())
   await utils.execAsync('git', ['clone', 'https://github.com/mikeacjones/codelab-web-app', oPath])
-  await utils.execAsync('yarn', null, {
+  await utils.execAsync('yarn', [], {
     cwd: oPath,
     env: {
       ...process.env,
