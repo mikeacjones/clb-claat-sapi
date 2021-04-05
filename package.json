@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "heroku-postbuild": "chmod 777 cli/claat-linux-amd64"
+    "heroku-postbuild": "git clone https://github.com/mikeacjones/codelab-web-app site; git clone https://github.com/mikeacjones/codelab-web-app site-dev; yarn --cwd site; yarn --cwd site-dev; chmod 777 cli/claat-linux-amd64"
   },
   "dependencies": {
     "async": "^3.2.0",
