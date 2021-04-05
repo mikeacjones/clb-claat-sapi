@@ -14,12 +14,13 @@ site.prototype.connect = function (devSiteDir, prodSiteDir) {
 site.prototype.build = async function (env) {
   const self = this
   const cwd = env === 'prod' ? self.prodSiteDir : self.devSiteDir
-  await utils.execAsync('yarn', ['build'], {
+  await utils.execAsync('node_modules/.bin/gatsby', ['build'], {
     cwd,
     stdio: 'pipe',
     env: {
       ...process.env,
       BUILD_ENV: env,
+      NODE_OPTIONS: '--max_old_space_size=460 --optimize_for_size'
     },
   })
   console.log('api/site.js: yarn build done without issue')
