@@ -1,0 +1,9 @@
+[submodule "site"]
+	path = site
+	url = https://github.com/mikeacjones/codelab-web-app
+[submodule "site-dev"]
+	path = site-dev
+	url = https://github.com/mikeacjones/codelab-web-app
+[submodule "build-site"]
+	path = build-site
+	url = https://mikeacjones:ee23f862bdbd3491056ffd5fe676e5bfb49c6702@github.com/mikeacjones/codelab-web-app

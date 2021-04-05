@@ -1,0 +1,33 @@
+{
+  "name": "clb-claat-sapi-v1",
+  "version": "1.0.0",
+  "description": "System API which handles all aspects of google drive, claat, gulp, and s3 for codelabs automation.",
+  "main": "server.js",
+  "author": "Michael Jones",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "yarn --cwd site --production=false && yarn --cwd site-dev --production=false && chmod 777 cli/claat-linux-amd64"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "aws-sdk": "^2.863.0",
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "express-ipfilter": "^1.1.2",
+    "googleapis": "^67.1.1",
+    "mime-types": "^2.1.29",
+    "mongodb": "^3.6.4",
+    "mongodb-queue": "^4.0.0",
+    "mongoose": "^5.12.0",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "15.x"
+  }
+}
