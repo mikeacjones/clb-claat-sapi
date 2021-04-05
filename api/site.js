@@ -13,9 +13,16 @@ site.prototype.connect = function (devSiteDir, prodSiteDir) {
 
 site.prototype.build = async function (env) {
   const self = this
-  const cwd = env === 'prod' ? self.prodSiteDir : self.devSiteDir
+  const oPath = path.join('/tmp', utils.uuid())
+  await utils.execAsync('git', ['clone', 'https://github.com/mikeacjones/codelab-web-app', oPath])
+  await utils.execAsync('yarn', null, {
+    cwd: oPath,
+    env: {
+      ...process.env,
+    }
+  })
   await utils.execAsync('node_modules/.bin/gatsby', ['build'], {
-    cwd,
+    cwd: oPath,
     env: {
       ...process.env,
       BUILD_ENV: env,
@@ -23,5 +30,5 @@ site.prototype.build = async function (env) {
     },
   })
   console.log('api/site.js: yarn build done without issue')
-  return path.join(cwd, 'public/')
+  return path.join(oPath, 'public/')
 }
