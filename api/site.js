@@ -20,7 +20,7 @@ site.prototype.build = async function (env) {
     env: {
       ...process.env,
       BUILD_ENV: env,
-      NODE_OPTIONS: '--max_old_space_size=460 --optimize_for_size'
+      NODE_OPTIONS: '--max_old_space_size=460'
     },
   })
   console.log('api/site.js: yarn build done without issue')
