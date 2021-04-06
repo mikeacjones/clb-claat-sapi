@@ -13,14 +13,14 @@ site.prototype.connect = function (devSiteDir, prodSiteDir) {
 
 site.prototype.build = async function (env) {
   const self = this
-  const oPath = path.join('/tmp', utils.uuid())
-  await utils.execAsync('git', ['clone', 'https://github.com/mikeacjones/codelab-web-app', oPath])
-  await utils.execAsync('yarn', ['install'], {
+  const oPath = env === 'dev' ? self.devSiteDir : self.prodSiteDir //path.join('/tmp', utils.uuid())
+  //await utils.execAsync('git', ['clone', 'https://github.com/mikeacjones/codelab-web-app', oPath])
+  /*await utils.execAsync('yarn', ['install'], {
     cwd: oPath,
     env: {
       ...process.env,
     }
-  })
+  })*/
   await utils.execAsync('node_modules/.bin/gatsby', ['build'], {
     cwd: oPath,
     env: {
