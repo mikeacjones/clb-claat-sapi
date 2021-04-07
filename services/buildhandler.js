@@ -22,7 +22,7 @@ const build = env => async msg => {
         break
     }
     if (siteNeedsBuild) await buildSite(env)
-    await callback(cb, { status: 'success', jobId })
+    else await callback(cb, { status: 'success', jobId })
     console.log(`Callback called without error`)
   } catch (ex) {
     console.log(ex)
@@ -95,16 +95,25 @@ const unpublishLab = async (id, env) => {
   await lab.save()
 }
 
-const buildSite = async env => {
-  var filter = {}
-  filter[`claat.${env}.codelab`] = {
-    $ne: null,
-    $exists: true,
-  }
-  const sitePath = await site.build(env)
-  console.log(`Site build complete; files local location: ${sitePath}`)
-  await s3obj.uploadFolder(sitePath, config.aws.s3.bucket[env])
-  console.log(`Site files uploaded to s3 bucket successfully`)
+const buildSite = async (env, callback, jobId) => {
+  try {
+    await axios.post(
+      'https://api.github.com/repos/mulesoft-consulting/codelabs-web-app/dispatches',
+      {
+        event_type: config.environment,
+        client_payload: {
+          target_bucket: config.aws.s3.bucket[env],
+          build_env: env,
+          callback: {
+            url: callback.url,
+            headers: callback.headers ? JSON.stringify(callback.headers) : '{}',
+            jobId,
+          },
+        },
+      },
+      {}
+    )
+  } catch {}
 }
 
 const callback = async (cb, payload) => {

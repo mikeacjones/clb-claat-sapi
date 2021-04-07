@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "heroku-postbuild": "curl -LO https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; tar -C /tmp -xvf go1.16.3.linux-amd64.tar.gz; rm go1.16.3.linux-amd64.tar.gz; /tmp/go/bin/go get github.com/mulesoft-consulting/codelabs-claat-tool/claat; cp -f /tmp/go/bin/* cli/; git clone https://github.com/mikeacjones/codelab-web-app site; git clone https://github.com/mikeacjones/codelab-web-app site-dev; yarn --cwd site; yarn --cwd site-dev; chmod 777 cli/claat"
+    "heroku-postbuild": "cd cli && curl -LO https://github.com/mulesoft-consulting/codelabs-claat-tool/releases/download/master/claat"
   },
   "dependencies": {
     "async": "^3.2.0",

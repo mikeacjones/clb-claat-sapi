@@ -1,10 +1,11 @@
 const path = require('path')
 
 module.exports = {
+  environment: process.env.ENVIRONMENT,
   port: process.env.PORT || 3000,
   cloudhubIP: process.env.CLOUDHUB_IP,
   cli: {
-    claat: path.join(__dirname, 'cli/', process.env.CLI_CLAAT),
+    claat: path.join(__dirname, 'cli/claat'),
     site: {
       prod: path.join(__dirname, 'site/'),
       dev: path.join(__dirname, 'site-dev/'),
