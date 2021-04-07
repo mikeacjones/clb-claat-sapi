@@ -68,7 +68,7 @@ const unpublishLab = async (payload, params) => {
 const importLab = async (payload, codelab) => {
   var mergeValues = {}
   mergeValues[codelab.oldUrl] = codelab.url
-  const newFile = await gdrive.createFromTemplate(payload.docId, config.google.drive.folder.workspace, codelab.title, mergeValues)
+  const newFile = await gdrive.createFromTemplate(payload.docId, config.google.drive.folder.workspace.id, codelab.title, mergeValues)
 
   const insertedLab = new Lab({
     createdBy: payload.importedBy,
