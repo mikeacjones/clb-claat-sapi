@@ -22,8 +22,10 @@ const build = env => async msg => {
         break
     }
     if (siteNeedsBuild) await buildSite(env)
-    else await callback(cb, { status: 'success', jobId })
-    console.log(`Callback called without error`)
+    else {
+      await callback(cb, { status: 'success', jobId })
+      console.log(`Callback called without error`)
+    }
   } catch (ex) {
     console.log(ex)
     console.error(ex)
@@ -111,9 +113,18 @@ const buildSite = async (env, callback, jobId) => {
           },
         },
       },
-      {}
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: `Bearer ${config.github.token}`,
+        },
+      }
     )
-  } catch {}
+    console.log('services/buildhandler.js: Called repository_dispatch successfull')
+  } catch (ex) {
+    console.log(ex)
+  }
 }
 
 const callback = async (cb, payload) => {

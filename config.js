@@ -2,6 +2,9 @@ const path = require('path')
 
 module.exports = {
   environment: process.env.ENVIRONMENT,
+  github: {
+    token: process.env.GITHUB_TOKEN,
+  },
   port: process.env.PORT || 3000,
   cloudhubIP: process.env.CLOUDHUB_IP,
   cli: {
