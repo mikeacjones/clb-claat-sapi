@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "heroku-postbuild": "cd cli && curl -LO https://github.com/mulesoft-consulting/codelabs-claat-tool/releases/download/master/claat"
+    "heroku-postbuild": "cd cli && curl -LO https://github.com/mulesoft-consulting/codelabs-claat-tool/releases/download/master/claat && chmod 777 claat"
   },
   "dependencies": {
     "async": "^3.2.0",
