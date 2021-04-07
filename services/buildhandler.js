@@ -21,7 +21,7 @@ const build = env => async msg => {
         await unpublishLab(id, env)
         break
     }
-    if (siteNeedsBuild) await buildSite(env)
+    if (siteNeedsBuild) await buildSite(env, cb, jobId)
     else {
       await callback(cb, { status: 'success', jobId })
       console.log(`Callback called without error`)
