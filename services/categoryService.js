@@ -25,6 +25,7 @@ const findById = async _id => {
 const createCategory = async (payload, file) => {
   const newCategory = new LabCategory({
     name: payload.name,
+    slackIcon: payload.slackIcon,
     slug: utils.slugify(payload.name),
     colors: {
       cardBorder: payload.cardBorderColor,
@@ -43,6 +44,7 @@ const updateCategory = async (id, payload, file) => {
   category.slug = utils.slugify(payload.name)
   category.colors.cardBorder = payload.cardBorderColor
   category.colors.buttonColor = payload.buttonColor
+  category.slackIcon = payload.slackIcon
   file.filename = category.image
   await category.save()
   await uploadCategory(file)
