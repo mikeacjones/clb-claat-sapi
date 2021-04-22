@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  baseFeedbackUrl: process.env.BASE_FEEDBACK_URL,
   environment: process.env.ENVIRONMENT,
   github: {
     token: process.env.GITHUB_TOKEN,

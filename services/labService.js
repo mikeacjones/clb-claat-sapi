@@ -38,6 +38,9 @@ const buildLab = async (payload, params) => {
   }
 }
 
+const deleteLab = async (payload, params) => {
+}
+
 const unpublishLab = async (payload, params) => {
   const jobId = utils.uuid()
   if (params.env) {
@@ -45,7 +48,7 @@ const unpublishLab = async (payload, params) => {
       id: params.id,
       job: 'UNPUBLISH',
       callback: payload,
-      jobId
+      jobId,
     })
   } else {
     const kvps = Object.entries(buildQueues)
@@ -55,13 +58,13 @@ const unpublishLab = async (payload, params) => {
         id: params.id,
         job: 'UNPUBLISH',
         callback: payload,
-        jobId
+        jobId,
       })
     }
   }
   return {
     jobId,
-    message: 'Unpublish queued'
+    message: 'Unpublish queued',
   }
 }
 
@@ -105,6 +108,7 @@ const createLab = async payload => {
         acc[`{{${kvp[0]}}}`] = kvp[1]
         return acc
       }, {}),
+      '{{feedbackUrl}}': `${config.baseFeedbackUrl}${payload.labConfig.labUrl}`,
     }
   )
 
