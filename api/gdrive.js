@@ -34,7 +34,7 @@ gdrive.prototype.copyDoc = async function (sourceDocId, destinationFolderId, doc
 
 gdrive.prototype.deleteDoc = async function (fileId) {
   if (!fileId) return
-  await drive.files.delete({ auth: this.jwtClient, fileId })
+  await drive.files.delete({ auth: this.jwtClient, fileId, supportsAllDrives: true })
 }
 
 gdrive.prototype.createFromTemplate = async function (templateDocId, destinationFolderId, name, mergeValues, docChanges = {}) {
