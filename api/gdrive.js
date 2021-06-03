@@ -48,7 +48,6 @@ gdrive.prototype.createFromTemplate = async function (templateDocId, destination
   await docs.documents.batchUpdate({
     auth: this.jwtClient,
     documentId: newFile.id,
-    supportsAllDrives: true,
     resource: {
       requests: buildTextUpdateRequests(mergeValues),
     },
