@@ -14,11 +14,13 @@ gdrive.prototype.copyDoc = async function (sourceDocId, destinationFolderId, doc
   const { data: sourceFile } = await drive.files.get({
     auth: this.jwtClient,
     fileId: sourceDocId,
+    supportsAllDrives: true,
   })
 
   const { data: newFile } = await drive.files.copy({
     auth: this.jwtClient,
     fileId: sourceFile.id,
+    supportsAllDrives: true,
     requestBody: {
       ...sourceFile,
       ...docChanges,
@@ -46,6 +48,7 @@ gdrive.prototype.createFromTemplate = async function (templateDocId, destination
   await docs.documents.batchUpdate({
     auth: this.jwtClient,
     documentId: newFile.id,
+    supportsAllDrives: true,
     resource: {
       requests: buildTextUpdateRequests(mergeValues),
     },
