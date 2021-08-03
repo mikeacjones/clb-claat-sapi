@@ -78,7 +78,7 @@ const importLab = async (payload, codelab) => {
     labConfig: {
       labTitle: codelab.title,
       labSummary: codelab.summary,
-      labCategories: codelab.category,
+      labCategories: codelab.category.map(lc => lc.toLowerCase()),
       labTags: codelab.tags,
       labAuthors: codelab.authors,
       labAuthorsLDAP: payload.importedBy,
