@@ -14,11 +14,13 @@ gdrive.prototype.copyDoc = async function (sourceDocId, destinationFolderId, doc
   const { data: sourceFile } = await drive.files.get({
     auth: this.jwtClient,
     fileId: sourceDocId,
+    supportsAllDrives: true,
   })
 
   const { data: newFile } = await drive.files.copy({
     auth: this.jwtClient,
     fileId: sourceFile.id,
+    supportsAllDrives: true,
     requestBody: {
       ...sourceFile,
       ...docChanges,
@@ -32,7 +34,7 @@ gdrive.prototype.copyDoc = async function (sourceDocId, destinationFolderId, doc
 
 gdrive.prototype.deleteDoc = async function (fileId) {
   if (!fileId) return
-  await drive.files.delete({ auth: this.jwtClient, fileId })
+  await drive.files.update({ auth: this.jwtClient, fileId, supportsAllDrives: true, requestBody: { trashed: true }})
 }
 
 gdrive.prototype.createFromTemplate = async function (templateDocId, destinationFolderId, name, mergeValues, docChanges = {}) {
