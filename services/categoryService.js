@@ -71,7 +71,7 @@ const uploadCategory = async file => {
         ContentType: file.mimetype,
       })
     }
-    await s3obj.uploadFile(tmpCssFile, bucket, path.join('styles/', 'mulesoft.css'))
+    //await s3obj.uploadFile(tmpCssFile, bucket, path.join('styles/', 'mulesoft.css'))
   }
 }
 

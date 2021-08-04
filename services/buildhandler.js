@@ -21,11 +21,12 @@ const build = env => async msg => {
         await unpublishLab(id, env)
         break
     }
-    if (siteNeedsBuild) await buildSite(env, cb, jobId)
-    else {
+    //if (siteNeedsBuild) 
+    await buildSite(env, cb, jobId)
+    /*else {
       await callback(cb, { status: 'success', jobId })
       console.log(`Callback called without error`)
-    }
+    }*/
   } catch (ex) {
     console.log(ex)
     console.error(ex)
